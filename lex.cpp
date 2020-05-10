@@ -6,6 +6,7 @@
 #include <string>
 #include "lex.h"
 
+/// gettok - Return the next token from standard input
 static int gettok() {
     static char LastChar = ' ';
 
@@ -20,9 +21,10 @@ static int gettok() {
 
         if (IdentifierStr == "def")
             return tok_def;
-        if (IdentifierStr == "extern")
+        else if (IdentifierStr == "extern")
             return tok_extern;
-        return tok_identifier;
+        else
+            return tok_identifier;
     }
 
     if (isdigit(LastChar) || LastChar == '.') { // Number: [0-9.]+
@@ -37,10 +39,10 @@ static int gettok() {
     }
 
     if (LastChar == '#') {
-        // Comment until end of line
-        do
+        // Comment goes until the end of the line
+        do {
             LastChar = (char) getchar();
-        while (LastChar != EOF && LastChar != '\n' && LastChar != '\r');
+        } while (LastChar != EOF && LastChar != '\n' && LastChar != '\r');
 
         if (LastChar != EOF)
             return gettok();

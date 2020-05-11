@@ -3,4 +3,4 @@ project(kaleidoscope)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(kaleidoscope main.cpp lex.cpp lex.h parse.cpp parse.h)
+add_executable(kaleidoscope main.cpp)
